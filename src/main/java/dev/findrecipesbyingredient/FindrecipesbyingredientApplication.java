@@ -13,9 +13,6 @@ public class FindrecipesbyingredientApplication {
 		SpringApplication.run(FindrecipesbyingredientApplication.class, args);
 	}
 
-	@GetMapping("/root")
-	public  String apiRoot(){
-		return "Hello word";
-	}
+
 
 }
