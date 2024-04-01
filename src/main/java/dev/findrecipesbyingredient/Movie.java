@@ -21,11 +21,7 @@ public class Movie {
     @Id
     private ObjectId id;
     private String plot;
-    private List<String> genres;
-    private Integer runtime;
 
-    @DocumentReference
-    private  List<Review>reviewId;
 
 
 
