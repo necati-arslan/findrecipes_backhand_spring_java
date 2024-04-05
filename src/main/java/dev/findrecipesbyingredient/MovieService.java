@@ -20,4 +20,8 @@ public class MovieService {
     public Optional<Movie>  singleMovie(ObjectId id){
         return movieRepository.findById(id);
     }
+
+    public Optional<List<Movie>>  serviceFindByYear(Integer year){
+        return movieRepository.findByYear(year);
+    }
 }

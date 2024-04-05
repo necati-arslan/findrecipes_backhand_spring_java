@@ -22,6 +22,10 @@ public class Movie {
     private ObjectId id;
     private String plot;
 
+    private Integer year;
+    private List<Review> reviews;
+
+
 
 
 

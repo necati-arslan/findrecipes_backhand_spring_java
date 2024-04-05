@@ -26,9 +26,15 @@ public class MovieController {
 
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<Movie>> getSingelMovie(@PathVariable ObjectId id){
-        return new ResponseEntity<Optional<Movie>>(movieService.singleMovie(id), HttpStatus.OK);
+    //@GetMapping("/{id}")
+    //public ResponseEntity<Optional<Movie>> getSingelMovie(@PathVariable ObjectId id){
+     //   return new ResponseEntity<Optional<Movie>>(movieService.singleMovie(id), HttpStatus.OK);
+
+    //}
+
+    @GetMapping("/{year}")
+    public ResponseEntity<Optional<List<Movie>>> getByYearMovie(@PathVariable Integer year){
+        return new ResponseEntity<Optional<List<Movie>>>(movieService.serviceFindByYear(year), HttpStatus.OK);
 
     }
 }
