@@ -3,12 +3,13 @@ package dev.findrecipesbyingredient.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "recipes")
 public class Recipe {
 
     @Id
     private String Id;
     private String name;
+
 
     public Recipe(String id, String name) {
         Id = id;
@@ -17,6 +18,14 @@ public class Recipe {
 
     public String getId() {
         return Id;
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "Id='" + Id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     public String getName() {
