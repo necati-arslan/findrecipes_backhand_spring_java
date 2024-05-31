@@ -12,6 +12,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.bson.types.ObjectId;
+
+
 
 import java.util.Optional;
 
@@ -72,6 +75,12 @@ public class UserService {
             // Handle authentication exceptions appropriately
             throw new UsernameNotFoundException("Authentication failed for user: " + loginRequest.username(), e);
         }
+    }
+
+
+    public Optional<User> findByUserId(String userId) {
+        ObjectId objectId = new ObjectId(userId);
+        return userRepository.findById(objectId);
     }
 
 
