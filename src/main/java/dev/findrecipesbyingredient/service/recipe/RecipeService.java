@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,13 +30,32 @@ public class RecipeService {
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            System.out.println(user.getFavoriteRecipes());
+           /* System.out.println("---"+ user.getUsername());
+            List<Recipe> favoriteRecipes = user.getFavoriteRecipes();
+            System.out.println("--- Favorite Recipes ---");
+            for (Recipe recipex : favoriteRecipes) {
+                System.out.println(recipex);
+            }*/
             user.getFavoriteRecipes().add(recipe);
             userRepository.save(user);
+
+            List<Recipe> favoriteRecipes = user.getFavoriteRecipes();
+            System.out.println("--- Favorite Recipes ---");
+            for (Recipe recipex : favoriteRecipes) {
+                System.out.println("==="+recipex);
+            }
+
             return "Recipe added to favorites successfully.";
         } else {
             throw new RuntimeException("User not found");
         }
 
+    }
+
+
+    public List<Recipe> getFavoriteRecipes(String userId) {
+        User user = userRepository.findById(new ObjectId(userId))
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return user.getFavoriteRecipes();
     }
 }

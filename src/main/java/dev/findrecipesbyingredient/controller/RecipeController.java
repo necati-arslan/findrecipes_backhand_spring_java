@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class RecipeController {
@@ -26,6 +28,17 @@ public class RecipeController {
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @GetMapping("/{userId}/favorite-recipes")
+    public ResponseEntity<List<Recipe>> getFavoriteRecipes(@PathVariable String userId) {
+        try {
+            List<Recipe> favoriteRecipes = recipeService.getFavoriteRecipes(userId);
+            return new ResponseEntity<>(favoriteRecipes, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }
