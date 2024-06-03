@@ -16,7 +16,7 @@ public class User {
     private String username;
     private String password;
     private String roles;
-    @DBRef(lazy = true)
+    @DBRef
     private List<Recipe> favoriteRecipes=new ArrayList<>();
 
     public User(String username, String password, String roles) {
