@@ -22,6 +22,8 @@ public class RecipeService {
 
     public String  addFavoriteRecipe(String userId,  Recipe recipe){
 
+        System.out.println("==="+userId);
+
         // Convert the userId from String to ObjectId
         ObjectId objectId = new ObjectId(userId);
 

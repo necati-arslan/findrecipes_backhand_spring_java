@@ -1,5 +1,6 @@
 package dev.findrecipesbyingredient.model;
 
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,13 +12,17 @@ public class Recipe {
     private String name;
 
 
-    public Recipe(String id, String name) {
-        Id = id;
+    public Recipe(String name, String Id) {
         this.name = name;
+        this.Id=Id;
+
     }
 
     public String getId() {
         return Id;
+    }
+    public void setId(String Id){
+        this.Id=Id;
     }
 
     @Override
@@ -32,9 +37,7 @@ public class Recipe {
         return name;
     }
 
-    public void setId(String id) {
-        Id = id;
-    }
+
 
     public void setName(String name) {
         this.name = name;

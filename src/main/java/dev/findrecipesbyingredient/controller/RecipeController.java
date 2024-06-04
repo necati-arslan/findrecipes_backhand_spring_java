@@ -21,9 +21,10 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @PostMapping("/{userId}/favorite-recipes")
+    @PostMapping("/{userId}/add-favorite-recipes")
     public ResponseEntity<String> addFavoriteRecipe(@PathVariable String userId, @RequestBody Recipe recipe) {
         try {
+            System.out.println("user---"+userId);
             String result = recipeService.addFavoriteRecipe(userId, recipe);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (RuntimeException e) {
@@ -35,6 +36,7 @@ public class RecipeController {
     @GetMapping("/{userId}/favorite-recipes")
     public ResponseEntity<List<Recipe>> getFavoriteRecipes(@PathVariable String userId) {
         try {
+            System.out.println("user---"+userId);
             List<Recipe> favoriteRecipes = recipeService.getFavoriteRecipes(userId);
             return new ResponseEntity<>(favoriteRecipes, HttpStatus.OK);
         } catch (RuntimeException e) {
