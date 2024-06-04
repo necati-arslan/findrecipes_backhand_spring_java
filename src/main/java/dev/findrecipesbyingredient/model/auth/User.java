@@ -16,8 +16,7 @@ public class User {
     private String username;
     private String password;
     private String roles;
-    @DBRef
-    private List<Recipe> favoriteRecipes=new ArrayList<>();
+    private List<String> favoriteRecipesIds =new ArrayList<>();
 
     public User(String username, String password, String roles) {
         this.username = username;
@@ -25,12 +24,13 @@ public class User {
         this.roles = roles;
     }
 
-    public List<Recipe> getFavoriteRecipes() {
-        return favoriteRecipes;
+    public List<String> getFavoriteRecipesIds() {
+        return favoriteRecipesIds;
     }
 
-    public void setFavoriteRecipes(List<Recipe> recipes) {
-        this.favoriteRecipes = favoriteRecipes;
+
+    public void setFavoriteRecipeIds(List<String> favoriteRecipeIds) {
+        this.favoriteRecipesIds = favoriteRecipeIds;
     }
 
     public ObjectId getId() {

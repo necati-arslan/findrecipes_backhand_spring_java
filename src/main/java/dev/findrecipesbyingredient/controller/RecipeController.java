@@ -21,26 +21,32 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @PostMapping("/{userId}/add-favorite-recipes")
-    public ResponseEntity<String> addFavoriteRecipe(@PathVariable String userId, @RequestBody Recipe recipe) {
+
+    @PostMapping("/{userId}/favorite-recipes/{recipeId}")
+    public ResponseEntity<String> addFavoriteRecipe(@PathVariable String userId, @PathVariable String recipeId) {
         try {
-            System.out.println("user---"+userId);
-            String result = recipeService.addFavoriteRecipe(userId, recipe);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            String result = recipeService.addFavoriteRecipe(userId, recipeId);
+            return ResponseEntity.ok(result);
         } catch (RuntimeException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(404).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Internal Server Error");
         }
     }
-
 
     @GetMapping("/{userId}/favorite-recipes")
-    public ResponseEntity<List<Recipe>> getFavoriteRecipes(@PathVariable String userId) {
+    public ResponseEntity<List<String>> getFavoriteRecipeIds(@PathVariable String userId) {
         try {
-            System.out.println("user---"+userId);
-            List<Recipe> favoriteRecipes = recipeService.getFavoriteRecipes(userId);
-            return new ResponseEntity<>(favoriteRecipes, HttpStatus.OK);
+            List<String> favoriteRecipeIds = recipeService.getFavoriteRecipeIds(userId);
+            return ResponseEntity.ok(favoriteRecipeIds);
         } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(404).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(null);
         }
     }
+
+
+
+
 }
