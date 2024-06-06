@@ -48,13 +48,6 @@ public class AuthController {
 
     }
 
-    @PostMapping("/addNewUser")
-    public User addUser(@RequestBody CreateUserRequest request){
-
-        System.out.println("----------------" +request.username());
-
-        return userService.createUser(request);
-    }
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody CreateUserRequest request) {
